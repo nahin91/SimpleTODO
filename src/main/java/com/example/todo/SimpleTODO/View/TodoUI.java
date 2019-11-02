@@ -11,7 +11,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import javafx.scene.input.KeyCode;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringUI
+@SpringUI(path = "/todos")
 @Theme("valo")
 public class TodoUI extends UI {
 
@@ -38,7 +38,10 @@ public class TodoUI extends UI {
     private void addHeader() {
         Label header = new Label("TODO");
         header.addStyleName(ValoTheme.LABEL_H1);
-        layout.addComponent(header);
+        Label subHeader = new Label("(Springboot + H2 database)");
+        header.addStyleName(ValoTheme.LABEL_H2);
+        layout.addComponents(header);
+        layout.addComponents(subHeader);
 
     }
 
@@ -72,6 +75,7 @@ public class TodoUI extends UI {
 
     private void addActionButtons() {
         Button deleteButton = new Button("Delete completed items");
+        deleteButton.setStyleName(ValoTheme.BUTTON_DANGER);
 
         deleteButton.addClickListener(click->todoList.deleteCompleted());
 
